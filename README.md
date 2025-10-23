@@ -28,56 +28,113 @@ Project Structure
 
 =====================================================================
 
-Installation & Setup
---------------------
-1. Clone or download the project to your local machine.
+PART 1 :- Setup and Installation  - should only be done once
 
-2. Install Python 3.9+.
-
-3. Create and activate Python virtual environment:
-
+Terminal 1:
+1. Create a virtual environment:  
+   command:
+   ```
    python -m venv venv
-   # Windows
-   venv\Scripts\activate
-   # macOS/Linux
-   source venv/bin/activate
+   ```
 
-4. Create a requirements.txt file with:
+2. Activate the virtual environment:  
+   - On Windows (PowerShell):  
+     command:
+     ```
+     .\venv\Scripts\Activate.ps1
+     ```
+   - On Mac/Linux:  
+     command:
+     ```
+     source venv/bin/activate
+     ```
 
-   streamlit
-   langchain-community
-   langchain-text-splitters
-   chromadb
-   sentence-transformers
-   langdetect
-   requests
-   faster-whisper
-   torch
-   pyttsx3
-   pypdf
-
-5. Install dependencies:
-
+3. Install required packages:  
+   command:
+   ```
    pip install -r requirements.txt
+   ```
 
-6. Install Ollama (separately from Python):
+4. Download necessary models:  
+   command:
+   ```
+   py .\download_models.py
+   ```
 
-   - Download and install from https://ollama.com/
-   - Start Ollama server:
+---
 
-     ollama serve
+Terminal 2: Ollama Model Pull (One-time setup, no virtual environment)
+- Download and install Ollama from https://ollama.com/
+- Pull the model (llama3.2):
+  command:
+  ```
+  ollama pull llama3.2
+  ```
+  Note: You only need to run this command once on your laptop. Subsequent uses of the model won't require pulling it again regardless of the folder.
+- Close this terminal after pulling the model.
 
-   - Pull required model once:
+---
 
-     ollama pull llama3.2
+PART 2 :- Running the AI Tutor Prototype (Repeat Every Time You Start It)  
+Note: remember to turn the internet off to experience the art of this prototype to answer any queries offline unlike online AI chatbots.  
+Yeah, you don't need internet to get your queries solved, isn't that interesting .....
 
-7. Run Streamlit apps in separate terminals (with venv activated):
+1. Terminal 1: Start Ollama server:
+   command:
+   ```
+   ollama serve
+   ```
+   (If you encounter errors, see the debug section below.)
 
-   streamlit run admin_panel.py
-   streamlit run tutor_interface.py
+2. Terminal 2:  
+   Activate virtual environment again:
+   command:
+   ```
+   .\venv\Scripts\Activate.ps1
+   ```
+   Run the admin app:
+   command:
+   ```
+   streamlit run .\admin_app.py
+   ```
 
-8. Use Admin Panel to upload PDFs for building the offline database.
-9. Use Tutor Interface to chat with your textbooks.
+3. Terminal 3:
+   Activate virtual environment:
+   command:
+   ```
+   .\venv\Scripts\Activate.ps1
+   ```
+   Run the student multilingual app:
+   command:
+   ```
+   streamlit run .\student_app_multilingual.py
+   ```
+
+So every time there will be 3 terminals running.
+
+---
+
+Error Debugs for Step 1 (If `ollama serve` Errors):
+
+1. Check if Ollama is already running:
+   command:
+   ```
+   tasklist | findstr ollama
+   ```
+2. For each process ID (PID) found, kill it by running:
+   command:
+   ```
+   taskkill /PID <PID> /F
+   ```
+   Replace <PID> with the actual port/process ID from the previous command. Repeat if there are multiple.
+
+Example output after 'tasklist | findstr ollama':
+   ollama.exe                   1234 Console                    1     12,345 K
+   command:
+   ```
+   taskkill /PID 1234 /F
+   ```
+
 
 =====================================================================
 
