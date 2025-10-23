@@ -1,4 +1,4 @@
-# 🤖 AI Textbook Tutor - Offline Local AI Project
+# AI Textbook Tutor - Offline Local AI for Learners
 
 Fully offline AI-powered Textbook Tutor supporting English and Telugu with Streamlit, LangChain, Ollama, ChromaDB, and HuggingFace embeddings.
 
@@ -154,4 +154,4 @@ Troubleshooting
 
 =====================================================================
 
-Made with ❤️ for offline AI learning
+Made by SAI SAMPATH BALLA for offline AI learning
