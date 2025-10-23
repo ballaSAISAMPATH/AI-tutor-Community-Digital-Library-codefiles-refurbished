@@ -1,0 +1,6 @@
+__pycache__
+ai_tutor_db
+models
+venv
+textbook_metadata.json
+.env
