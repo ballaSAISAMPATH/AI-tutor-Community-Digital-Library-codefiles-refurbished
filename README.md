@@ -58,7 +58,7 @@ Terminal 1:
 4. Download necessary models:  
    command:
    ```
-   py .\download_models.py
+   python .\download_models.py
    ```
 
 ---
